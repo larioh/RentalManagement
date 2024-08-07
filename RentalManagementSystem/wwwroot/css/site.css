@@ -1,0 +1,93 @@
+html {
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+
+body {
+    
+    display: flex;
+}
+
+
+
+
+
+/*.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    padding: 48px 0 0;*/ /* Height of navbar */
+    /*box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-sticky {
+    position: relative;
+    top: 0;
+    height: calc(100vh - 48px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto;*/ /* Scrollable contents if viewport is shorter than content. */
+/*}*/
+
+
+.sidebar {
+    width: 150px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #f8f9fa;
+    padding-top: 60px;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-hidden {
+    transform: translateX(-150px);
+}
+
+.content {
+    margin-left: 150px;
+    transition: margin-left 0.3s ease;
+   
+}
+
+.content-expanded {
+    margin-left: 150px;
+}
+
+.toggle-btn {
+    position: fixed;
+    top: 20px;
+    left: 10px;
+    z-index: 1001;
+}
+.nav-link.active {
+    color: #007bff;
+}
+
+.nav-link:hover {
+    color: #0056b3;
+}
+
+.dropdown-menu {
+    position: relative; /* This ensures the dropdown menu is contained within the sidebar */
+}
+
+.main-content {
+    margin-left: 200px; /* Width of the sidebar */
+    padding: 20px;
+}
