@@ -6,10 +6,11 @@ namespace RentalManagementSystem.Models.RentalFloors
     {
         [Key]
         public int FloorId { get; set; }
+        [Required]
         public int PropertyId { get; set; }
-
+        [Required]
         public string? FloorNo { get; set; }
-       
+        [Required]
         public int RoomSize { get; set; }
         
         public bool Status { get; set; }

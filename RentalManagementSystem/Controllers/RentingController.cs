@@ -8,12 +8,12 @@ using System.Diagnostics;
 
 namespace RentalManagementSystem.Controllers
 {
-    public class HomeController : Controller
+    public class RentingController : Controller
     {
         private readonly ILogger<RoomController> _logger;
         private readonly ApplicationDbcontext _dbcontext;
 
-        public HomeController(ILogger<RoomController> logger, ApplicationDbcontext dbcontext)
+        public RentingController(ILogger<RoomController> logger, ApplicationDbcontext dbcontext)
         {
             _dbcontext = dbcontext;
             _logger = logger;

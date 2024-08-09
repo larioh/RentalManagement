@@ -2,7 +2,9 @@
 using RentalManagementSystem.Models.Bookings;
 using RentalManagementSystem.Models.RentalFloors;
 using RentalManagementSystem.Models.RentalsProperties;
+using RentalManagementSystem.Models.RoomCapacity;
 using RentalManagementSystem.Models.Rooms;
+using RentalManagementSystem.Models.Tenants;
 
 namespace RentalManagementSystem.Data
 {
@@ -12,10 +14,12 @@ namespace RentalManagementSystem.Data
         { }
 
 
-        public DbSet<Bookings> Books {get; set;}
+        public DbSet<Bookings> Bookings { get; set;}
         public DbSet<Floors> Floors { get; set; }
-        public DbSet<RentalProperty> RentalProperties { get; set; }
-        public DbSet<Room> Rooms { get; set; }
+        public DbSet<RentalProperties> RentalProperties { get; set; }
+        public DbSet<Rooms> Rooms { get; set; }
+        public DbSet<RoomCapacities> RoomCapacities { get; set; }
+        public DbSet<Tenants> Tenants { get; set; }
 
     }
 }

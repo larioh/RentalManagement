@@ -2,7 +2,7 @@
 
 namespace RentalManagementSystem.Models.Tenants
 {
-    public class Occupant
+    public class Tenants
     {
         [Key]
         public int TenatId { get; set; }

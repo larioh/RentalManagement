@@ -1,10 +1,10 @@
-﻿@model IEnumerable<RentalManagementSystem.Models.RentalsProperties.RentalProperty>
+﻿@model IEnumerable<RentalManagementSystem.Models.RentalFloors.Floors>
 
 @{
-    ViewData["Title"] = "View";
+    ViewData["Title"] = "ViewRooms";
 }
 
-<h1>View</h1>
+<h1>ViewRooms</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -13,19 +13,16 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.FloorId)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.PropertyId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.FloorNo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FloorSize)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Location)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
+                @Html.DisplayNameFor(model => model.RoomSize)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Status)
@@ -40,19 +37,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.FloorId)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.PropertyId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.FloorNo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FloorSize)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Location)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
+                @Html.DisplayFor(modelItem => item.RoomSize)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Status)

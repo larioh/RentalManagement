@@ -30,14 +30,21 @@ namespace RentalManagementSystem.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookingId"));
 
-                    b.Property<int>("TenantTenatId")
+                    b.Property<int>("FloorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RentalId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TenantId")
                         .HasColumnType("int");
 
                     b.HasKey("BookingId");
 
-                    b.HasIndex("TenantTenatId");
-
-                    b.ToTable("Books");
+                    b.ToTable("Booking");
                 });
 
             modelBuilder.Entity("RentalManagementSystem.Models.RentalFloors.Floors", b =>
@@ -52,6 +59,7 @@ namespace RentalManagementSystem.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FloorNo")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PropertyId")
@@ -65,10 +73,10 @@ namespace RentalManagementSystem.Migrations
 
                     b.HasKey("FloorId");
 
-                    b.ToTable("Floors");
+                    b.ToTable("Floor");
                 });
 
-            modelBuilder.Entity("RentalManagementSystem.Models.RentalsProperties.RentalProperty", b =>
+            modelBuilder.Entity("RentalManagementSystem.Models.RentalsProperties.RentalProperties", b =>
                 {
                     b.Property<int>("PropertyId")
                         .ValueGeneratedOnAdd()
@@ -80,15 +88,18 @@ namespace RentalManagementSystem.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("FloorSize")
                         .HasColumnType("int");
 
                     b.Property<string>("Location")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Status")
@@ -96,19 +107,33 @@ namespace RentalManagementSystem.Migrations
 
                     b.HasKey("PropertyId");
 
-                    b.ToTable("RentalProperties");
+                    b.ToTable("RentalProperty");
                 });
 
-            modelBuilder.Entity("RentalManagementSystem.Models.Rooms.Room", b =>
+            modelBuilder.Entity("RentalManagementSystem.Models.RoomCapacity.RoomCapacities", b =>
+                {
+                    b.Property<int>("CapacityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CapacityId"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CapacityId");
+
+                    b.ToTable("RoomCapacity");
+                });
+
+            modelBuilder.Entity("RentalManagementSystem.Models.Rooms.Rooms", b =>
                 {
                     b.Property<int>("RoomId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoomId"));
-
-                    b.Property<int?>("BookingsBookingId")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
@@ -122,11 +147,15 @@ namespace RentalManagementSystem.Migrations
                     b.Property<double>("RentCost")
                         .HasColumnType("float");
 
+                    b.Property<int>("RentalId")
+                        .HasColumnType("int");
+
                     b.Property<string>("RoomCapacity")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RoomNo")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Status")
@@ -134,12 +163,10 @@ namespace RentalManagementSystem.Migrations
 
                     b.HasKey("RoomId");
 
-                    b.HasIndex("BookingsBookingId");
-
-                    b.ToTable("Rooms");
+                    b.ToTable("Room");
                 });
 
-            modelBuilder.Entity("RentalManagementSystem.Models.Tenants.Occupant", b =>
+            modelBuilder.Entity("RentalManagementSystem.Models.Tenants.Tenants", b =>
                 {
                     b.Property<int>("TenatId")
                         .ValueGeneratedOnAdd()
@@ -167,30 +194,7 @@ namespace RentalManagementSystem.Migrations
 
                     b.HasKey("TenatId");
 
-                    b.ToTable("Occupant");
-                });
-
-            modelBuilder.Entity("RentalManagementSystem.Models.Bookings.Bookings", b =>
-                {
-                    b.HasOne("RentalManagementSystem.Models.Tenants.Occupant", "Tenant")
-                        .WithMany()
-                        .HasForeignKey("TenantTenatId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Tenant");
-                });
-
-            modelBuilder.Entity("RentalManagementSystem.Models.Rooms.Room", b =>
-                {
-                    b.HasOne("RentalManagementSystem.Models.Bookings.Bookings", null)
-                        .WithMany("Room")
-                        .HasForeignKey("BookingsBookingId");
-                });
-
-            modelBuilder.Entity("RentalManagementSystem.Models.Bookings.Bookings", b =>
-                {
-                    b.Navigation("Room");
+                    b.ToTable("Tenant");
                 });
 #pragma warning restore 612, 618
         }

@@ -2,12 +2,15 @@
 
 namespace RentalManagementSystem.Models.Rooms
 {
-    public class Room
+    public class Rooms
     {
         [Key]
         public int RoomId { get; set; }
         [Required]
+        public int RentalId { get; set; }
+        [Required]
         public int FloorId { get; set; }
+        [Required]
         public  string? RoomNo { get; set; }
         [Required]
         public double  RentCost { get; set; }

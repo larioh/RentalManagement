@@ -1,4 +1,5 @@
-﻿using RentalManagementSystem.Models.Rooms;
+﻿using RentalManagementSystem.Models.RentalsProperties;
+using RentalManagementSystem.Models.Rooms;
 using RentalManagementSystem.Models.Tenants;
 using System.ComponentModel.DataAnnotations;
 
@@ -9,9 +10,13 @@ namespace RentalManagementSystem.Models.Bookings
         [Key]
         public int BookingId { get; set; }
         [Required]
-        public List<Room>? Room { get; set; }
+        public int RoomId { get; set; }
         [Required]
-        public Occupant?  Tenant { get; set; }
+        public int FloorId { get; set; }
+        [Required]
+        public int RentalId { get; set; }
+        [Required]
+        public int TenantId { get; set; }
 
     }
 }
