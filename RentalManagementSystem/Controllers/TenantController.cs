@@ -1,10 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using RentalManagementSystem.Data;
 using RentalManagementSystem.Models;
 using RentalManagementSystem.Models.RentalsProperties;
 using RentalManagementSystem.Models.RoomCapacity;
 using RentalManagementSystem.Models.Rooms;
 using RentalManagementSystem.Models.Tenants;
+using RentalManagementSystem.ViewModels;
 using System.Diagnostics;
 
 namespace RentalManagementSystem.Controllers
@@ -22,13 +25,45 @@ namespace RentalManagementSystem.Controllers
 
         public IActionResult ViewTenants()
         {
-            IEnumerable<Tenants> tenants = _dbcontext.Tenants.ToList();
-            return View(tenants);
+            var tenants = from tenant in _dbcontext.Tenants
+                          join gender in _dbcontext.GenderTypes
+                          on tenant.Gender equals gender.GenderId.ToString() // assuming Gender is stored as a string
+                          select new TenantViewModel
+                          {
+
+                              Idno = tenant.Idno,
+                              Name = tenant.Name,
+                              PhoneNo = tenant.PhoneNo,
+                              GenderName = gender.GenderName,
+                              CreatedDate=tenant.CreateDate,
+                              TenantId=tenant.TenatId,
+                          };
+           
+            return View(tenants.ToList());
         }
+        //public IActionResult GenderTypes()
+        //{
+        //    var gender = _dbcontext.GenderTypes.Select(g => new SexCategory
+        //    {
+        //        Gender = g.GenderName,
+        //        GenderId = g.GenderId,
+        //    }).ToList();
+        //    return View(gender);
+        //}
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            var sexCategories = _dbcontext.GenderTypes.ToList();
+            var gender = sexCategories.Select(g => new SelectListItem
+            {
+                Value = g.GenderId.ToString(),
+                Text = g.GenderName,
+            }).ToList();
+            var model = new TenantData
+            {
+                GetSexCategory = gender
+            };
+            return View(model);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

@@ -12,8 +12,8 @@ using RentalManagementSystem.Data;
 namespace RentalManagementSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbcontext))]
-    [Migration("20240807173923_AddConventions2Db")]
-    partial class AddConventions2Db
+    [Migration("20240810091627_createTblrgenderType")]
+    partial class createTblrgenderType
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -47,7 +47,7 @@ namespace RentalManagementSystem.Migrations
 
                     b.HasKey("BookingId");
 
-                    b.ToTable("Booking");
+                    b.ToTable("Bookings");
                 });
 
             modelBuilder.Entity("RentalManagementSystem.Models.RentalFloors.Floors", b =>
@@ -76,7 +76,7 @@ namespace RentalManagementSystem.Migrations
 
                     b.HasKey("FloorId");
 
-                    b.ToTable("Floor");
+                    b.ToTable("Floors");
                 });
 
             modelBuilder.Entity("RentalManagementSystem.Models.RentalsProperties.RentalProperties", b =>
@@ -110,7 +110,7 @@ namespace RentalManagementSystem.Migrations
 
                     b.HasKey("PropertyId");
 
-                    b.ToTable("RentalProperty");
+                    b.ToTable("RentalProperties");
                 });
 
             modelBuilder.Entity("RentalManagementSystem.Models.RoomCapacity.RoomCapacities", b =>
@@ -121,13 +121,13 @@ namespace RentalManagementSystem.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CapacityId"));
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CapacityId");
 
-                    b.ToTable("RoomCapacity");
+                    b.ToTable("RoomCapacities");
                 });
 
             modelBuilder.Entity("RentalManagementSystem.Models.Rooms.Rooms", b =>
@@ -166,7 +166,23 @@ namespace RentalManagementSystem.Migrations
 
                     b.HasKey("RoomId");
 
-                    b.ToTable("Room");
+                    b.ToTable("Rooms");
+                });
+
+            modelBuilder.Entity("RentalManagementSystem.Models.Tenants.GenderType", b =>
+                {
+                    b.Property<int>("GenderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GenderId"));
+
+                    b.Property<string>("GenderName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("GenderId");
+
+                    b.ToTable("GenderTypes");
                 });
 
             modelBuilder.Entity("RentalManagementSystem.Models.Tenants.Tenants", b =>
@@ -197,7 +213,7 @@ namespace RentalManagementSystem.Migrations
 
                     b.HasKey("TenatId");
 
-                    b.ToTable("Tenant");
+                    b.ToTable("Tenants");
                 });
 #pragma warning restore 612, 618
         }

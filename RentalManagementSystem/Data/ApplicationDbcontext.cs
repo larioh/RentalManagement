@@ -13,13 +13,15 @@ namespace RentalManagementSystem.Data
         public ApplicationDbcontext(DbContextOptions<ApplicationDbcontext> options) :base(options) 
         { }
 
-
+        public DbSet<GenderType> GenderTypes { get; set; }
         public DbSet<Bookings> Bookings { get; set;}
         public DbSet<Floors> Floors { get; set; }
         public DbSet<RentalProperties> RentalProperties { get; set; }
         public DbSet<Rooms> Rooms { get; set; }
         public DbSet<RoomCapacities> RoomCapacities { get; set; }
         public DbSet<Tenants> Tenants { get; set; }
+        
+        
 
     }
 }

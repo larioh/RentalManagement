@@ -7,8 +7,8 @@ namespace RentalManagementSystem.Metadata
 {
     public class RentalMetadata
     {
-        public Floors? floor { get; set; }
-        public RentalProperties? RentalBuildings { get; set; }
+        
+        public RentalProperties? RentalBuilding { get; set; }
         public RoomCapacities? Capacity { get; set; }
         public Rooms? Room { get; set; }
         public Floors? Floor { get; set; }

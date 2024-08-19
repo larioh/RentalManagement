@@ -4,6 +4,8 @@ using RentalManagementSystem.Models;
 using RentalManagementSystem.Models.RentalsProperties;
 using RentalManagementSystem.Models.RoomCapacity;
 using RentalManagementSystem.Models.Rooms;
+using RentalManagementSystem.Models.Tenants;
+using RentalManagementSystem.ViewModels;
 using System.Diagnostics;
 
 namespace RentalManagementSystem.Controllers
@@ -24,20 +26,12 @@ namespace RentalManagementSystem.Controllers
             return View();
         }
 
-        //public IActionResult ViewRentals()
-        //{
-        //    IEnumerable<RentalProperties> rentalProperty = _dbcontext.RentalProperty.ToList();
-        //    return View(rentalProperty);
-        //}
+    
         public IActionResult Create()
         {
             return View();
         }
-        //public IActionResult ViewRooms()
-        //{
-        //    IEnumerable<Rooms> rooms = _dbcontext.Room.ToList();
-        //    return View(rooms);
-        //}
+      
         public IActionResult ViewRoomCapacity()
         {
             IEnumerable<RoomCapacities> rentalProperty = new List<RoomCapacities>();

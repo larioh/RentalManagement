@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RentalManagementSystem.Models.Tenants.Tenants>
+﻿@model IEnumerable<RentalManagementSystem.ViewModels.TenantViewModel>
 
 @{
     ViewData["Title"] = "ViewTenants";
@@ -13,7 +13,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.TenatId)
+                @Html.DisplayNameFor(model => model.TenantId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Idno)
@@ -25,10 +25,10 @@
                 @Html.DisplayNameFor(model => model.PhoneNo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Gender)
+                @Html.DisplayNameFor(model => model.GenderName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CreateDate)
+                @Html.DisplayNameFor(model => model.CreatedDate)
             </th>
             <th></th>
         </tr>
@@ -37,7 +37,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.TenatId)
+                @Html.DisplayFor(modelItem => item.TenantId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Idno)
@@ -49,10 +49,10 @@
                 @Html.DisplayFor(modelItem => item.PhoneNo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Gender)
+                @Html.DisplayFor(modelItem => item.GenderName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.CreateDate)
+                @Html.DisplayFor(modelItem => item.CreatedDate)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

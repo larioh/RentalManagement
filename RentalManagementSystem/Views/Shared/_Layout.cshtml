@@ -93,19 +93,19 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="ViewRentals">
-                        <i class="fas fa-user-secret"></i> Rentals
+                    <a class="nav-link" asp-area="" asp-controller="Tenant" asp-action="ViewTenants">
+                        <i class="fas fa-user-secret"></i> Tenants
                     </a>
                 </li>
                 <!-- Dropdown Menu Example -->
                 <li class="nav-item">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-cog"></i> Rentals
+                        <i class="fas fa-cog"></i> Configurations
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                         <li><a class="dropdown-item" asp-area="" asp-controller="Property" asp-action="ViewRentals">Rentals</a></li>
-                        <li><a class="dropdown-item" asp-area="" asp-controller="Property" asp-action="ViewRooms">Floors</a></li>
-                        <li><a class="dropdown-item" asp-area="" asp-controller="Property" asp-action="ViewRooms">Rooms</a></li>
+                        <li><a class="dropdown-item" asp-area="" asp-controller="Floor" asp-action="ViewFloors">Floors</a></li>
+                        <li><a class="dropdown-item" asp-area="" asp-controller="Room" asp-action="ViewRooms">Rooms</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">

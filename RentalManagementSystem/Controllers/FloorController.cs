@@ -11,10 +11,10 @@ namespace RentalManagementSystem.Controllers
 {
     public class FloorController : Controller
     {
-        private readonly ILogger<RoomController> _logger;
+        private readonly ILogger<FloorController> _logger;
         private readonly ApplicationDbcontext _dbcontext;
 
-        public FloorController(ILogger<RoomController> logger, ApplicationDbcontext dbcontext)
+        public FloorController(ILogger<FloorController> logger, ApplicationDbcontext dbcontext)
         {
             _dbcontext = dbcontext;
             _logger = logger;
