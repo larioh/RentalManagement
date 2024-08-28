@@ -12,8 +12,8 @@ using RentalManagementSystem.Data;
 namespace RentalManagementSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbcontext))]
-    [Migration("20240810091627_createTblrgenderType")]
-    partial class createTblrgenderType
+    [Migration("20240821184230_creatingTables")]
+    partial class creatingTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

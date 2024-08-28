@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace RentalManagementSystem.Migrations
 {
     /// <inheritdoc />
-    public partial class createTblrgenderType : Migration
+    public partial class creatingTables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
