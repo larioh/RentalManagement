@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace RentalManagementSystem.Migrations
 {
     /// <inheritdoc />
-    public partial class creatingTables : Migration
+    public partial class alteringTables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -33,9 +33,9 @@ namespace RentalManagementSystem.Migrations
                 {
                     FloorId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PropertyId = table.Column<int>(type: "int", nullable: false),
+                    PropertyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FloorNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RoomSize = table.Column<int>(type: "int", nullable: false),
+                    RoomType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -64,11 +64,12 @@ namespace RentalManagementSystem.Migrations
                     PropertyId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    FloorSize = table.Column<int>(type: "int", nullable: false),
+                    FloorLevels = table.Column<int>(type: "int", nullable: false),
                     Location = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBY = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -94,14 +95,14 @@ namespace RentalManagementSystem.Migrations
                 {
                     RoomId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RentalId = table.Column<int>(type: "int", nullable: false),
-                    FloorId = table.Column<int>(type: "int", nullable: false),
+                    FloorNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RoomNo = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RentCost = table.Column<double>(type: "float", nullable: false),
                     Deposit = table.Column<double>(type: "float", nullable: false),
-                    RoomCapacity = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RoomType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<bool>(type: "bit", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

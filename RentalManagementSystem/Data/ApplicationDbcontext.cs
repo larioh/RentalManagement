@@ -18,7 +18,7 @@ namespace RentalManagementSystem.Data
         public DbSet<Floors> Floors { get; set; }
         public DbSet<RentalProperties> RentalProperties { get; set; }
         public DbSet<Rooms> Rooms { get; set; }
-        public DbSet<RoomCapacities> RoomCapacities { get; set; }
+        public DbSet<RoomType> RoomCapacities { get; set; }
         public DbSet<Tenants> Tenants { get; set; }
         
         

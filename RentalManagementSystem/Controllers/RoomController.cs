@@ -63,12 +63,12 @@ namespace RentalManagementSystem.Controllers
             if (roomDetails != null)
             {
                 // Update the properties with the values from the rentalProperties parameter
-                roomDetails.RentalId = room.RentalId;
-                roomDetails.FloorId = room.FloorId;
+               
+                roomDetails.FloorNo = room.FloorNo;
                 roomDetails.RoomNo = room.RoomNo;
                 roomDetails.RentCost = room.RentCost;
                 roomDetails.Deposit = room.Deposit;
-                roomDetails.RoomCapacity = room.RoomCapacity;
+                roomDetails.RoomType = room.RoomType;
                 roomDetails.Status = room.Status;
 
                 // Add other properties as needed

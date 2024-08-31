@@ -65,8 +65,8 @@ namespace RentalManagementSystem.Controllers
             {
                 // Update the properties with the values from the rentalProperties parameter
                 floorDetails.FloorNo = floor.FloorNo;
-                floorDetails.PropertyId = floor.PropertyId;
-                floorDetails.RoomSize = floor.RoomSize;
+                floorDetails.PropertyName = floor.PropertyName;
+                floorDetails.RoomType = floor.RoomType;
                 floorDetails.Status = floor.Status;
                 
                 // Add other properties as needed

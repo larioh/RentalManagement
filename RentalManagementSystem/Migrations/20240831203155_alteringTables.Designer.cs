@@ -12,8 +12,8 @@ using RentalManagementSystem.Data;
 namespace RentalManagementSystem.Migrations
 {
     [DbContext(typeof(ApplicationDbcontext))]
-    [Migration("20240821184230_creatingTables")]
-    partial class creatingTables
+    [Migration("20240831203155_alteringTables")]
+    partial class alteringTables
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,11 +65,13 @@ namespace RentalManagementSystem.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("PropertyId")
-                        .HasColumnType("int");
+                    b.Property<string>("PropertyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RoomSize")
-                        .HasColumnType("int");
+                    b.Property<string>("RoomType")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
@@ -90,11 +92,14 @@ namespace RentalManagementSystem.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("CreatedBY")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("FloorSize")
+                    b.Property<int>("FloorLevels")
                         .HasColumnType("int");
 
                     b.Property<string>("Location")
@@ -113,7 +118,7 @@ namespace RentalManagementSystem.Migrations
                     b.ToTable("RentalProperties");
                 });
 
-            modelBuilder.Entity("RentalManagementSystem.Models.RoomCapacity.RoomCapacities", b =>
+            modelBuilder.Entity("RentalManagementSystem.Models.RoomCapacity.RoomType", b =>
                 {
                     b.Property<int>("CapacityId")
                         .ValueGeneratedOnAdd()
@@ -141,23 +146,24 @@ namespace RentalManagementSystem.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<double>("Deposit")
                         .HasColumnType("float");
 
-                    b.Property<int>("FloorId")
-                        .HasColumnType("int");
+                    b.Property<string>("FloorNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("RentCost")
                         .HasColumnType("float");
 
-                    b.Property<int>("RentalId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("RoomCapacity")
+                    b.Property<string>("RoomNo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RoomNo")
+                    b.Property<string>("RoomType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

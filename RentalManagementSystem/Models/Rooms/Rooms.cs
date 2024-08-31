@@ -7,9 +7,7 @@ namespace RentalManagementSystem.Models.Rooms
         [Key]
         public int RoomId { get; set; }
         [Required]
-        public int RentalId { get; set; }
-        [Required]
-        public int FloorId { get; set; }
+        public string? FloorNo { get; set; }
         [Required]
         public  string? RoomNo { get; set; }
         [Required]
@@ -17,8 +15,9 @@ namespace RentalManagementSystem.Models.Rooms
         [Required]
         public double Deposit { get; set; }
         [Required]
-        public string? RoomCapacity { get; set; }
+        public string? RoomType { get; set; }
         public bool Status { get; set; }
         public DateTime CreateDate { get; set; } = DateTime.Now;
+        public string? CreatedBy { get; set; }
     }
 }

@@ -66,7 +66,7 @@ namespace RentalManagementSystem.Controllers
             {
                 // Update the properties with the values from the rentalProperties parameter
                 rentalsDetails.Name = rentalProperties.Name;
-                rentalsDetails.FloorSize = rentalProperties.FloorSize;
+                rentalsDetails.FloorLevels = rentalProperties.FloorLevels;
                 rentalsDetails.Location = rentalProperties.Location;
                 rentalsDetails.Status = rentalProperties.Status;
                 rentalsDetails.Description = rentalProperties.Description;

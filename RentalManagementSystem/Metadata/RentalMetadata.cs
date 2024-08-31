@@ -9,7 +9,7 @@ namespace RentalManagementSystem.Metadata
     {
         
         public RentalProperties? RentalBuilding { get; set; }
-        public RoomCapacities? Capacity { get; set; }
+        public RoomType? Capacity { get; set; }
         public Rooms? Room { get; set; }
         public Floors? Floor { get; set; }
     }

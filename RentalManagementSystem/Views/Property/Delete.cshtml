@@ -24,10 +24,10 @@
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FloorSize)
+            @Html.DisplayNameFor(model => model.FloorLevels)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.FloorSize)
+                @Html.DisplayFor(model => model.FloorLevels)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Location)
@@ -55,7 +55,7 @@
         <!-- Hidden fields to bind the model data -->
         <input type="hidden" asp-for="PropertyId" />
         <input type="hidden" asp-for="Name" />
-        <input type="hidden" asp-for="FloorSize" />
+        <input type="hidden" asp-for="FloorLevels" />
         <input type="hidden" asp-for="Location" />
         <input type="hidden" asp-for="Description" />
         <input type="hidden" asp-for="CreateDate" />

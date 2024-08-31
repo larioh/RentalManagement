@@ -14,28 +14,24 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="row">
         <div class="col-md-4">
+
+                <div class="form-group">
+                    <label asp-for="RoomNo" class="control-label"></label>
+                    <input asp-for="RoomNo" class="form-control" />
+                    <span asp-validation-for="RoomNo" class="text-danger"></span>
+                </div>
             <div class="form-group">
-                <label asp-for="RoomId" class="control-label"></label>
-                <input asp-for="RoomId" class="form-control" />
-                <span asp-validation-for="RoomId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RentalId" class="control-label"></label>
-                <input asp-for="RentalId" class="form-control" />
-                <span asp-validation-for="RentalId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FloorId" class="control-label"></label>
-                <input asp-for="FloorId" class="form-control" />
-                <span asp-validation-for="FloorId" class="text-danger"></span>
+                <label asp-for="FloorNo" class="control-label"></label>
+                    <input asp-for="FloorNo" class="form-control" />
+                    <span asp-validation-for="FloorNo" class="text-danger"></span>
             </div>
         </div>
         <div class="col-md-4">
-            <div class="form-group">
-                <label asp-for="RoomNo" class="control-label"></label>
-                <input asp-for="RoomNo" class="form-control" />
-                <span asp-validation-for="RoomNo" class="text-danger"></span>
-            </div>
+                <div class="form-group">
+                    <label asp-for="RoomType" class="control-label"></label>
+                    <input asp-for="RoomType" class="form-control" />
+                    <span asp-validation-for="RoomType" class="text-danger"></span>
+                </div>
             <div class="form-group">
                 <label asp-for="RentCost" class="control-label"></label>
                 <input asp-for="RentCost" class="form-control" />
@@ -45,11 +41,7 @@
            
         </div>
         <div class="col-md-4">
-            <div class="form-group">
-                <label asp-for="RoomCapacity" class="control-label"></label>
-                <input asp-for="RoomCapacity" class="form-control" />
-                <span asp-validation-for="RoomCapacity" class="text-danger"></span>
-            </div>
+           
 
                 <div class="form-group">
                     <label asp-for="Deposit" class="control-label"></label>

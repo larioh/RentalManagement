@@ -34,7 +34,7 @@ namespace RentalManagementSystem.Controllers
       
         public IActionResult ViewRoomCapacity()
         {
-            IEnumerable<RoomCapacities> rentalProperty = new List<RoomCapacities>();
+            IEnumerable<RoomType> rentalProperty = new List<RoomType>();
             return View(rentalProperty);
         }
 

@@ -10,12 +10,13 @@ namespace RentalManagementSystem.Models.RentalsProperties
         [Required]
         public string? Name { get; set; }
         [Required]
-        public int FloorSize { get; set; }
+        public int FloorLevels { get; set; }
         [Required]
         public string? Location { get; set; }
         [Required]
         public string? Description { get; set; }
         public bool Status { get; set; }
         public DateTime CreateDate { get; set; } = DateTime.Now.Date;
+        public string? CreatedBY { get; set; }
     }
 }

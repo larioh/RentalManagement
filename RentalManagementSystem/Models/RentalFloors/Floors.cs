@@ -7,11 +7,11 @@ namespace RentalManagementSystem.Models.RentalFloors
         [Key]
         public int FloorId { get; set; }
         [Required]
-        public int PropertyId { get; set; }
+        public string? PropertyName { get; set; }
         [Required]
         public string? FloorNo { get; set; }
         [Required]
-        public int RoomSize { get; set; }
+        public string? RoomType { get; set; }
         
         public bool Status { get; set; }
         public DateTime CreateDate { get; set; } = DateTime.Now;

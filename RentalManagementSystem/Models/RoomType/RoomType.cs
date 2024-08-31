@@ -2,7 +2,7 @@
 
 namespace RentalManagementSystem.Models.RoomCapacity
 {
-    public class RoomCapacities
+    public class RoomType
     {
         [Key]
         public int CapacityId { get; set; }
