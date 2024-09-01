@@ -5,6 +5,7 @@ using RentalManagementSystem.Models.RentalsProperties;
 using RentalManagementSystem.Models.RoomCapacity;
 using RentalManagementSystem.Models.Rooms;
 using RentalManagementSystem.Models.Tenants;
+using RentalManagementSystem.ViewModels;
 
 namespace RentalManagementSystem.Data
 {
@@ -20,8 +21,10 @@ namespace RentalManagementSystem.Data
         public DbSet<Rooms> Rooms { get; set; }
         public DbSet<RoomType> RoomCapacities { get; set; }
         public DbSet<Tenants> Tenants { get; set; }
-        
-        
+        public DbSet<Currency> Currency { get; set; }
+        public DbSet<Paymode> Paymode { get; set; }
+
+
 
     }
 }

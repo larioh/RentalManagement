@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using RentalManagementSystem.Data;
 using RentalManagementSystem.Models;
 using RentalManagementSystem.Models.RentalsProperties;
+using RentalManagementSystem.Models.Renting;
 using RentalManagementSystem.Models.RoomCapacity;
 using RentalManagementSystem.Models.Rooms;
 using System.Diagnostics;
@@ -21,7 +23,48 @@ namespace RentalManagementSystem.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var fetchRooms = _dbcontext.Rooms.ToList();
+            var getProperties = _dbcontext.RentalProperties.ToList();
+            var rentals = getProperties.Select(g => new SelectListItem
+            {
+                Value = g.PropertyId.ToString(),
+                Text = g.Name,
+            }).ToList();
+            var getFloors = _dbcontext.Floors.ToList();
+            var floors = getFloors.Select(g => new SelectListItem
+            {
+                Value = g.FloorId.ToString(),
+                Text = g.FloorNo,
+            }).ToList();
+            var getTenants = _dbcontext.Tenants.ToList();
+            var tenant = getTenants.Select(g => new SelectListItem
+            {
+                Value = g.TenatId.ToString(),
+                Text = g.Name,
+            }).ToList();
+            var getCurrency = _dbcontext.Currency.ToList();
+            var currency = getCurrency.Select(g => new SelectListItem
+            {
+                Value = g.CurrencyId.ToString(),
+                Text = g.CurrencyName,
+            }).ToList();
+            var getPaymode = _dbcontext.Paymode.ToList();
+            var paymode = getPaymode.Select(g => new SelectListItem
+            {
+                Value = g.PaymodeId.ToString(),
+                Text = g.Mode,
+            }).ToList();
+            var metaData = new RentingViewModel
+            {
+                GetRooms = fetchRooms,
+                GetProperty = rentals,
+                GetFloors = floors,
+                GetTenant = tenant,
+                GetCurrency = currency,
+                GetPayMode = paymode,
+
+            };
+            return View(metaData);
         }
 
         //public IActionResult ViewRentals()

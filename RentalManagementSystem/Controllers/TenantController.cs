@@ -30,13 +30,13 @@ namespace RentalManagementSystem.Controllers
                           on tenant.Gender equals gender.GenderId.ToString() // assuming Gender is stored as a string
                           select new TenantViewModel
                           {
-
+                              TenantId = tenant.TenatId,
                               Idno = tenant.Idno,
                               Name = tenant.Name,
                               PhoneNo = tenant.PhoneNo,
                               GenderName = gender.GenderName,
                               CreatedDate=tenant.CreateDate,
-                              TenantId=tenant.TenatId,
+                              
                           };
            
             return View(tenants.ToList());
