@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
 namespace RentalManagementSystem.Models.Rooms
 {
@@ -6,6 +7,8 @@ namespace RentalManagementSystem.Models.Rooms
     {
         [Key]
         public int RoomId { get; set; }
+        [Required]
+        public int RentalId { get; set; }
         [Required]
         public string? FloorNo { get; set; }
         [Required]
@@ -19,5 +22,6 @@ namespace RentalManagementSystem.Models.Rooms
         public bool Status { get; set; }
         public DateTime CreateDate { get; set; } = DateTime.Now;
         public string? CreatedBy { get; set; }
+        public IEnumerable<SelectListItem>? GetProperty { get; set; }
     }
 }

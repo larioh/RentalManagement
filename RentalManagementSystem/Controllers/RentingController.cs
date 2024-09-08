@@ -72,6 +72,14 @@ namespace RentalManagementSystem.Controllers
         //    IEnumerable<RentalProperties> rentalProperty = _dbcontext.RentalProperty.ToList();
         //    return View(rentalProperty);
         //}
+        // Fetch rooms based on rental ID
+        [HttpGet]
+        public JsonResult GetRoomsByRental(int rentalId)
+        {
+            //var rooms = _roomService.GetRoomsByRentalId(rentalId);
+            var rooms = _dbcontext.Rooms.FirstOrDefault(a=>a.RentalId==rentalId);
+            return Json(rooms);
+        }
         public IActionResult Create()
         {
             return View();

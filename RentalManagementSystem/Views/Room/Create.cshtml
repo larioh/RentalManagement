@@ -16,9 +16,10 @@
         <div class="col-md-4">
 
                 <div class="form-group">
-                    <label asp-for="RoomNo" class="control-label"></label>
-                    <input asp-for="RoomNo" class="form-control" />
-                    <span asp-validation-for="RoomNo" class="text-danger"></span>
+                    <label asp-for="RentalId" class="control-label font-weight-bold"></label>
+                    <select id="rental-select" asp-for="RentalId" asp-items="Model.GetProperty" class="form-control">
+                    </select>
+                    <span asp-validation-for="RentalId" class="text-danger"></span>
                 </div>
             <div class="form-group">
                 <label asp-for="FloorNo" class="control-label"></label>
@@ -32,16 +33,20 @@
                     <input asp-for="RoomType" class="form-control" />
                     <span asp-validation-for="RoomType" class="text-danger"></span>
                 </div>
-            <div class="form-group">
-                <label asp-for="RentCost" class="control-label"></label>
-                <input asp-for="RentCost" class="form-control" />
-                <span asp-validation-for="RentCost" class="text-danger"></span>
-            </div>
-        
+
+                <div class="form-group">
+                    <label asp-for="RoomNo" class="control-label"></label>
+                    <input asp-for="RoomNo" class="form-control" />
+                    <span asp-validation-for="RoomNo" class="text-danger"></span>
+                </div>
            
         </div>
         <div class="col-md-4">
-           
+                <div class="form-group">
+                    <label asp-for="RentCost" class="control-label"></label>
+                    <input asp-for="RentCost" class="form-control" />
+                    <span asp-validation-for="RentCost" class="text-danger"></span>
+                </div>
 
                 <div class="form-group">
                     <label asp-for="Deposit" class="control-label"></label>
@@ -50,7 +55,7 @@
                 </div>
             
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary" style="float:right" />
             </div>
         </div>
         </div>

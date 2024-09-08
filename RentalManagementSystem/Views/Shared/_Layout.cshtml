@@ -6,7 +6,7 @@
     <title>@ViewData["Title"] - RentalManagementSystem</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link rel="stylesheet" href="~/RentalManagementSystem.styles.css" asp-append-version="true" />
     <style>
         body {
@@ -15,8 +15,7 @@
             height: 100vh;
         }
 
-        .sidebar 
-        {
+        .sidebar {
             width: 200px;
             position: fixed;
             top: 0;
@@ -49,32 +48,41 @@
             left: 10px;
             z-index: 1001;
         }
-        /* Ensure a minimum height for the table */
-        #rentalPropertiesTable tbody {
-            min-height: 150px;
-            display: block;
-            width: 100%;
-            position: relative;
+
+        /* Custom styles for the collapsible sections */
+        .nav-item .collapse {
+            margin-left: 20px;
+        }
+        /* Only show arrows for dropdown links */
+        .dropdown-toggle.collapsed:after {
+           
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            float: right;
+            margin-left: 10px; /* Add space between text and arrow */
         }
 
-            #rentalPropertiesTable tbody:empty {
-                height: 150px;
-                line-height: 150px;
-                text-align: center;
-                color: #777;
-            }
-
-            /* Table layout adjustments */
-            #rentalPropertiesTable thead,
-            #rentalPropertiesTable tbody tr {
-                display: table;
-                width: 100%;
-                table-layout: fixed;
-            }
-
-        #rentalPropertiesTable thead {
-            width:100% ;
+        .dropdown-toggle:not(.collapsed):after {
+            content: "\f106"; /* FontAwesome up arrow */
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            float: right;
+            margin-left: 10px; /* Add space between text and arrow */
         }
+
+        /* Remove unwanted content before or after dropdowns */
+        .dropdown-toggle::before,
+        .dropdown-toggle::after {
+            display: inline-block;
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+        }
+
+        /* Ensure other links (non-dropdown) are not affected */
+        .nav-link {
+            content: none; /* No additional content */
+        }
+
     </style>
 </head>
 <body>
@@ -93,11 +101,6 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" asp-area="" asp-controller="Tenant" asp-action="ViewTenants">
-                        <i class="fas fa-user-secret"></i> Tenants
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" asp-area="" asp-controller="Renting" asp-action="Index">
                         <i class="fas fa-user-secret"></i> Rent a Room
                     </a>
@@ -107,39 +110,59 @@
                         <i class="fas fa-user-secret"></i> Tenants
                     </a>
                 </li>
-                <!-- Dropdown Menu Example -->
                 <li class="nav-item">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link" asp-area="" asp-controller="Renting" asp-action="Index">
+                        <i class="fas fa-user-secret"></i> Rent a Room
+                    </a>
+                </li>
+
+                <!-- Collapsible section for Configurations -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-toggle="collapse" href="#collapseConfigurations" role="button" aria-expanded="false">
                         <i class="fas fa-cog"></i> Configurations
+                        <i class="fas fa-chevron-down" style="float: right;"></i>
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li><a class="dropdown-item" asp-area="" asp-controller="Property" asp-action="ViewRentals">Rentals</a></li>
-                        <li><a class="dropdown-item" asp-area="" asp-controller="Floor" asp-action="ViewFloors">Floors</a></li>
-                        <li><a class="dropdown-item" asp-area="" asp-controller="Room" asp-action="ViewRooms">Rooms</a></li>
-                    </ul>
+                    <div class="collapse" id="collapseConfigurations">
+                        <ul class="nav flex-column">
+                            <li><a class="nav-link" asp-area="" asp-controller="Property" asp-action="ViewRentals">Rentals</a></li>
+                            <li><a class="nav-link" asp-area="" asp-controller="Floor" asp-action="ViewFloors">Floors</a></li>
+                            <li><a class="nav-link" asp-area="" asp-controller="Room" asp-action="ViewRooms">Rooms</a></li>
+                        </ul>
+                    </div>
                 </li>
+
+                <!-- Collapsible section for Settings -->
                 <li class="nav-item">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link collapsed" data-bs-toggle="collapse" href="#collapseSettings" role="button" aria-expanded="false">
                         <i class="fas fa-cog"></i> Settings
+                        <i class="fas fa-chevron-down" style="float: right;"></i>
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <li><a class="dropdown-item" asp-area="" asp-controller="Settings" asp-action="Profile">Profile</a></li>
-                        <li><a class="dropdown-item" asp-area="" asp-controller="Settings" asp-action="Account">Account</a></li>
-                    </ul>
+                    <div class="collapse" id="collapseSettings">
+                        <ul class="nav flex-column">
+                            <li><a class="nav-link" asp-area="" asp-controller="Settings" asp-action="Profile">Profile</a></li>
+                            <li><a class="nav-link" asp-area="" asp-controller="Settings" asp-action="Account">Account</a></li>
+                        </ul>
+                    </div>
                 </li>
-                <!-- Another Dropdown Menu Example -->
+
+                <!-- Collapsible section for Reports -->
                 <li class="nav-item">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdownMenuReports" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link collapsed" data-bs-toggle="collapse" href="#collapseReports" role="button" aria-expanded="false">
                         <i class="fas fa-chart-line"></i> Reports
+                        <i class="fas fa-chevron-down" style="float: right;"></i>
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuReports">
-                        <li><a class="dropdown-item" asp-area="" asp-controller="Reports" asp-action="Sales">Sales</a></li>
-                        <li><a class="dropdown-item" asp-area="" asp-controller="Reports" asp-action="Expenses">Expenses</a></li>
-                    </ul>
+                    <div class="collapse" id="collapseReports">
+                        <ul class="nav flex-column">
+                            <li><a class="nav-link" asp-area="" asp-controller="Reports" asp-action="Sales">Sales</a></li>
+                            <li><a class="nav-link" asp-area="" asp-controller="Reports" asp-action="Expenses">Expenses</a></li>
+                        </ul>
+                    </div>
                 </li>
+
             </ul>
         </div>
     </nav>
+
     <div class="content" id="mainContent">
         <header class="border-bottom mb-3">
             <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white">
@@ -149,7 +172,6 @@
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    
                 </div>
             </nav>
         </header>
@@ -157,12 +179,6 @@
             @RenderBody()
         </main>
     </div>
-
-   @*  <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - RentalManagementSystem - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer> *@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

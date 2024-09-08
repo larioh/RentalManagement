@@ -1,10 +1,14 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using RentalManagementSystem.Data;
 using RentalManagementSystem.Models;
 using RentalManagementSystem.Models.RentalFloors;
 using RentalManagementSystem.Models.RentalsProperties;
+using RentalManagementSystem.Models.Renting;
 using RentalManagementSystem.Models.RoomCapacity;
 using RentalManagementSystem.Models.Rooms;
+using RentalManagementSystem.Models.Tenants;
+using RentalManagementSystem.ViewModels;
 using System.Diagnostics;
 
 namespace RentalManagementSystem.Controllers
@@ -28,7 +32,19 @@ namespace RentalManagementSystem.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            var getProperties = _dbcontext.RentalProperties.ToList();
+            var rentals = getProperties.Select(g => new SelectListItem
+            {
+                Value = g.PropertyId.ToString(),
+                Text = g.Name,
+            }).ToList();
+            var metaData = new Rooms
+            {
+               
+                GetProperty = rentals
+            };
+            return View(metaData);
+            
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
