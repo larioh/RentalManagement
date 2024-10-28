@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RentalManagementSystem.Models.Rooms.Rooms>
+@model IEnumerable<RentalManagementSystem.Models.Rooms.Rooms>
 
 @{
     ViewData["Title"] = "ViewRooms";
@@ -7,71 +7,33 @@
 <h1>ViewRooms</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <RadzenButton Text="Create New" Click="@(() => NavigationManager.NavigateTo("Create"))" />
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.RoomId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FloorNo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RoomNo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RentCost)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Deposit)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RoomType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreateDate)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.RoomId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FloorNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RoomNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RentCost)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Deposit)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RoomType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreateDate)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
+<RadzenGrid Data="@Model" TItem="RentalManagementSystem.Models.Rooms.Rooms" ColumnWidth="200px">
+    <Columns>
+        <RadzenGridColumn TItem="RentalManagementSystem.Models.Rooms.Rooms" Property="RoomId" Title="Room ID" />
+        <RadzenGridColumn TItem="RentalManagementSystem.Models.Rooms.Rooms" Property="FloorNo" Title="Floor No" />
+        <RadzenGridColumn TItem="RentalManagementSystem.Models.Rooms.Rooms" Property="RoomNo" Title="Room No" />
+        <RadzenGridColumn TItem="RentalManagementSystem.Models.Rooms.Rooms" Property="RentCost" Title="Rent Cost" />
+        <RadzenGridColumn TItem="RentalManagementSystem.Models.Rooms.Rooms" Property="Deposit" Title="Deposit" />
+        <RadzenGridColumn TItem="RentalManagementSystem.Models.Rooms.Rooms" Property="RoomType" Title="Room Type" />
+        <RadzenGridColumn TItem="RentalManagementSystem.Models.Rooms.Rooms" Property="Status" Title="Status" />
+        <RadzenGridColumn TItem="RentalManagementSystem.Models.Rooms.Rooms" Property="CreateDate" Title="Create Date" />
+        <RadzenGridColumn TItem="RentalManagementSystem.Models.Rooms.Rooms" Title="Actions">
+            <Template Context="room">
+                <RadzenButton Text="Edit" Click="@(() => NavigationManager.NavigateTo($"Edit/{room.RoomId}"))" />
+                <RadzenButton Text="Details" Click="@(() => NavigationManager.NavigateTo($"Details/{room.RoomId}"))" />
+                <RadzenButton Text="Delete" Click="@(() => NavigationManager.NavigateTo($"Delete/{room.RoomId}"))" />
+            </Template>
+        </RadzenGridColumn>
+    </Columns>
+</RadzenGrid>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-    </tbody>
-</table>
+
+@code {
+    [Inject]
+    protected NavigationManager NavigationManager { get; set; }
+}

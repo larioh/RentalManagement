@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RentalManagementSystem.Models.RoomCapacity.RoomType>
+@model IEnumerable<RentalManagementSystem.Models.RoomCapacity.RoomType>
 
 @{
     ViewData["Title"] = "ViewRoomCapacity";
@@ -7,35 +7,18 @@
 <h1>ViewRoomCapacity</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <RadzenButton Text="Create New" Click="@(args => NavigationManager.NavigateTo("Create"))" />
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.CapacityId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CapacityId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<RadzenGrid Data="@Model" TItem="RentalManagementSystem.Models.RoomCapacity.RoomType" ColumnWidth="200px">
+    <Columns>
+        <RadzenGridColumn TItem="RentalManagementSystem.Models.RoomCapacity.RoomType" Property="CapacityId" Title="Capacity Id" />
+        <RadzenGridColumn TItem="RentalManagementSystem.Models.RoomCapacity.RoomType" Property="Description" Title="Description" />
+        <RadzenGridColumn TItem="RentalManagementSystem.Models.RoomCapacity.RoomType" Title="Actions">
+            <Template Context="item">
+                <RadzenButton Text="Edit" Click="@(args => NavigationManager.NavigateTo($"Edit/{item.CapacityId}"))" />
+                <RadzenButton Text="Details" Click="@(args => NavigationManager.NavigateTo($"Details/{item.CapacityId}"))" />
+                <RadzenButton Text="Delete" Click="@(args => NavigationManager.NavigateTo($"Delete/{item.CapacityId}"))" />
+            </Template>
+        </RadzenGridColumn>
+    </Columns>
+</RadzenGrid>

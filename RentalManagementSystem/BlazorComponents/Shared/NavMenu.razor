@@ -1,0 +1,27 @@
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">RentalManagementSystem</a>
+        <button class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@navMenuCssClass" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+        <a class="nav-link" href="">Home</a>
+        <a class="nav-link" href="">Counter</a>
+        <a class="nav-link" href="">Fetch data</a>
+    </nav>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? navMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}
