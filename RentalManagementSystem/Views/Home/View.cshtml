@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RentalManagementSystem.Models.RentalFloors.Floors>
+@model IEnumerable<RentalManagementSystem.Models.RentalFloors.Floors>
 
 @{
     ViewData["Title"] = "View";
@@ -9,57 +9,37 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FloorId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PropertyName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FloorNo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RoomType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Status)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreateDate)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FloorId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PropertyName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FloorNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RoomType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreateDate)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
+<RadzenGrid Data="@Model" TItem="RentalManagementSystem.Models.RentalFloors.Floors">
+    <Columns>
+        <RadzenGridColumn TItem="RentalManagementSystem.Models.RentalFloors.Floors" Property="FloorId" Title="Floor ID" />
+        <RadzenGridColumn TItem="RentalManagementSystem.Models.RentalFloors.Floors" Property="PropertyName" Title="Property Name" />
+        <RadzenGridColumn TItem="RentalManagementSystem.Models.RentalFloors.Floors" Property="FloorNo" Title="Floor No" />
+        <RadzenGridColumn TItem="RentalManagementSystem.Models.RentalFloors.Floors" Property="RoomType" Title="Room Type" />
+        <RadzenGridColumn TItem="RentalManagementSystem.Models.RentalFloors.Floors" Property="Status" Title="Status" />
+        <RadzenGridColumn TItem="RentalManagementSystem.Models.RentalFloors.Floors" Property="CreateDate" Title="Create Date" />
+        <RadzenGridColumn TItem="RentalManagementSystem.Models.RentalFloors.Floors" Title="Actions">
+            <Template Context="item">
+                <RadzenButton Text="Edit" Click="@(args => EditItem(item))" />
+                <RadzenButton Text="Details" Click="@(args => ViewDetails(item))" />
+                <RadzenButton Text="Delete" Click="@(args => DeleteItem(item))" />
+            </Template>
+        </RadzenGridColumn>
+    </Columns>
+</RadzenGrid>
+
+@code {
+    void EditItem(RentalManagementSystem.Models.RentalFloors.Floors item)
+    {
+        // Implement edit logic here
+    }
+
+    void ViewDetails(RentalManagementSystem.Models.RentalFloors.Floors item)
+    {
+        // Implement view details logic here
+    }
+
+    void DeleteItem(RentalManagementSystem.Models.RentalFloors.Floors item)
+    {
+        // Implement delete logic here
+    }
 }
-    </tbody>
-</table>

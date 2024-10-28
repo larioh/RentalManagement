@@ -1,4 +1,4 @@
-﻿@model RentalManagementSystem.Models.RentalsProperties.RentalProperties
+@model RentalManagementSystem.Models.RentalsProperties.RentalProperties
 
 @{
     ViewData["Title"] = "Edit";
@@ -9,60 +9,34 @@
 <h4>RentalProperties</h4>
 <hr />
 <div class="row">
-    <form asp-action="EditRental" method="post">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label asp-for="PropertyId"  class="control-label"></label>
-                    <input asp-for="PropertyId" readonly="true" class="form-control" />
-                    <span asp-validation-for="PropertyId" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Name" class="control-label"></label>
-                    <input asp-for="Name" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-             
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label asp-for="Location" class="control-label"></label>
-                    <input asp-for="Location" class="form-control" />
-                    <span asp-validation-for="Location" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Description" class="control-label"></label>
-                    <input asp-for="Description" class="form-control" />
-                    <span asp-validation-for="Description" class="text-danger"></span>
-                </div>
-
-            </div>
-            <div class="col-md-4">
-
-                <div class="form-group">
-                    <label asp-for="FloorLevels" class="control-label"></label>
-                    <input asp-for="FloorLevels" class="form-control" />
-                    <span asp-validation-for="FloorLevels" class="text-danger"></span>
-                </div>
-
-            </div>
-
-
-            <div class="form-group">
-                <button type="submit" style="float:right;" class="btn btn-primary btn-sm">
-                    <i class="fas fa-plus"></i>
-                </button>
-            </div>
-
-        </div>
-    </form>
+    <RadzenTemplateForm Data="@Model" TItem="RentalManagementSystem.Models.RentalsProperties.RentalProperties" Submit="@OnSubmit">
+        <RadzenFieldset>
+            <RadzenFieldset Legend="Property Details">
+                <RadzenTextBox @bind-Value="Model.PropertyId" Name="PropertyId" Placeholder="Property ID" Style="width: 100%;" Disabled="true" />
+                <RadzenTextBox @bind-Value="Model.Name" Name="Name" Placeholder="Name" Style="width: 100%;" />
+                <RadzenTextBox @bind-Value="Model.Location" Name="Location" Placeholder="Location" Style="width: 100%;" />
+                <RadzenTextBox @bind-Value="Model.Description" Name="Description" Placeholder="Description" Style="width: 100%;" />
+                <RadzenNumeric @bind-Value="Model.FloorLevels" Name="FloorLevels" Placeholder="Floor Levels" Style="width: 100%;" />
+            </RadzenFieldset>
+            <RadzenButton Text="Save" ButtonType="Submit" Style="margin-top: 20px;" />
+        </RadzenFieldset>
+    </RadzenTemplateForm>
 </div>
 
 <div>
-    <a asp-action="ViewRentals">Back to List</a>
+    <RadzenButton Text="Back to List" Click="@(() => NavigationManager.NavigateTo("ViewRentals"))" />
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@code {
+    [Inject]
+    protected NavigationManager NavigationManager { get; set; }
+
+    private void OnSubmit()
+    {
+        // Implement form submission logic here
+    }
 }

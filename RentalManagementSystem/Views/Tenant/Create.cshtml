@@ -1,54 +1,35 @@
-﻿@model RentalManagementSystem.ViewModels.TenantData
+@model RentalManagementSystem.ViewModels.TenantData
 
 @{
     ViewData["Title"] = "Create";
 }
 
-
 <div class="card" style="padding:25px;">
-          
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <RadzenTemplateForm Data="@Model" TItem="RentalManagementSystem.ViewModels.TenantData" Submit="@OnSubmit">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="row">
             <div class="col-md-4">
-            <div class="form-group">
-                <label asp-for="Idno" class="control-label"></label>
-                <input asp-for="Idno" class="form-control" />
-                <span asp-validation-for="Idno" class="text-danger"></span>
+                <RadzenTextBox @bind-Value="Model.Idno" Name="Idno" Placeholder="Idno" Style="width: 100%;" />
+                <RadzenRequiredValidator Component="Idno" Text="Idno is required" Style="position: absolute;" />
             </div>
-            <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+            <div class="col-md-4">
+                <RadzenTextBox @bind-Value="Model.Name" Name="Name" Placeholder="Name" Style="width: 100%;" />
+                <RadzenRequiredValidator Component="Name" Text="Name is required" Style="position: absolute;" />
+            </div>
+            <div class="col-md-4">
+                <RadzenTextBox @bind-Value="Model.PhoneNo" Name="PhoneNo" Placeholder="PhoneNo" Style="width: 100%;" />
+                <RadzenRequiredValidator Component="PhoneNo" Text="PhoneNo is required" Style="position: absolute;" />
+            </div>
+            <div class="col-md-4">
+                <RadzenDropDown @bind-Value="Model.Gender" Name="Gender" Data="@(Model.GetSexCategory.Select(g => new { g.Value, g.Text }))" TextProperty="Text" ValueProperty="Value" Style="width: 100%;" />
+                <RadzenRequiredValidator Component="Gender" Text="Gender is required" Style="position: absolute;" />
             </div>
         </div>
-                <div class="col-md-4">
-            <div class="form-group">
-                <label asp-for="PhoneNo" class="control-label"></label>
-                <input asp-for="PhoneNo" class="form-control" />
-                <span asp-validation-for="PhoneNo" class="text-danger"></span>
-                </div>
-            </div>
-                <div class="col-md-4">
-            <div class="form-group">
-                <label asp-for="Gender" class="control-label"></label>
-                @* <input asp-for="Gender" class="form-control" /> *@
-                 <select asp-for="Gender" asp-items="Model.GetSexCategory" class="form-control"></select>
-                <span asp-validation-for="Gender" class="text-danger"></span>
-            </div>
-                </div>
-               
-      
-            <div class="form-group" style="padding:25px">
-                <button type="submit" style="float:right;" class="btn btn-primary btn-sm">
-                    <i class="fas fa-plus"></i>
-                </button>
-            </div>
-         </div>
-
-        </form>
-
-    <div>
+        <div class="form-group" style="padding:25px">
+            <RadzenButton ButtonType="ButtonType.Submit" Text="Submit" Style="float:right;" Icon="add_circle_outline" />
+        </div>
+    </RadzenTemplateForm>
+</div>
 
 <div>
     <a asp-action="Index">Back to List</a>
