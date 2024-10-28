@@ -1,4 +1,4 @@
-﻿@model RentalManagementSystem.Models.Rooms.Rooms
+@model RentalManagementSystem.Models.Rooms.Rooms
 
 @{
     ViewData["Title"] = "AddRoom";
@@ -10,59 +10,38 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="AddRoom">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="RoomId" class="control-label"></label>
-                <input asp-for="RoomId" class="form-control" />
-                <span asp-validation-for="RoomId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FloorNo" class="control-label"></label>
-                <input asp-for="FloorNo" class="form-control" />
-                <span asp-validation-for="FloorNo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RoomNo" class="control-label"></label>
-                <input asp-for="RoomNo" class="form-control" />
-                <span asp-validation-for="RoomNo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RentCost" class="control-label"></label>
-                <input asp-for="RentCost" class="form-control" />
-                <span asp-validation-for="RentCost" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Deposit" class="control-label"></label>
-                <input asp-for="Deposit" class="form-control" />
-                <span asp-validation-for="Deposit" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RoomType" class="control-label"></label>
-                <input asp-for="RoomType" class="form-control" />
-                <span asp-validation-for="RoomType" class="text-danger"></span>
-            </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
-                </label>
-            </div>
-            <div class="form-group">
-                <label asp-for="CreateDate" class="control-label"></label>
-                <input asp-for="CreateDate" class="form-control" />
-                <span asp-validation-for="CreateDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        <RadzenTemplateForm Data="@Model" TItem="RentalManagementSystem.Models.Rooms.Rooms" Submit="@OnSubmit">
+            <RadzenFieldset>
+                <RadzenFieldset Legend="Room Details">
+                    <RadzenTextBox @bind-Value="Model.RoomId" Name="RoomId" Placeholder="Room ID" Style="width: 100%;" />
+                    <RadzenTextBox @bind-Value="Model.FloorNo" Name="FloorNo" Placeholder="Floor No" Style="width: 100%;" />
+                    <RadzenTextBox @bind-Value="Model.RoomNo" Name="RoomNo" Placeholder="Room No" Style="width: 100%;" />
+                    <RadzenNumeric @bind-Value="Model.RentCost" Name="RentCost" Placeholder="Rent Cost" Style="width: 100%;" />
+                    <RadzenNumeric @bind-Value="Model.Deposit" Name="Deposit" Placeholder="Deposit" Style="width: 100%;" />
+                    <RadzenTextBox @bind-Value="Model.RoomType" Name="RoomType" Placeholder="Room Type" Style="width: 100%;" />
+                    <RadzenCheckBox @bind-Value="Model.Status" Name="Status" />
+                    <RadzenDatePicker @bind-Value="Model.CreateDate" Name="CreateDate" Style="width: 100%;" />
+                </RadzenFieldset>
+                <RadzenButton Text="Create" ButtonType="Submit" Style="margin-top: 20px;" />
+            </RadzenFieldset>
+        </RadzenTemplateForm>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <RadzenButton Text="Back to List" Click="@(() => NavigationManager.NavigateTo("Index"))" />
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@code {
+    [Inject]
+    protected NavigationManager NavigationManager { get; set; }
+
+    private void OnSubmit()
+    {
+        // Implement form submission logic here
+    }
 }

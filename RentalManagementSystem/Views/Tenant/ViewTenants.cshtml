@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RentalManagementSystem.ViewModels.TenantViewModel>
+@model IEnumerable<RentalManagementSystem.ViewModels.TenantViewModel>
 
 @{
     ViewData["Title"] = "ViewTenants";
@@ -10,62 +10,26 @@
     ViewData["Title"] = "View";
 }
 
-
-
 <div class="row">
-    <a class="btn btn-primary" style="float:right;width:fit-content" asp-action="Create">
-        New<i class="fas fa-plus"></i>
-    </a>
+    <RadzenButton Text="New" Icon="add_circle_outline" Style="float:right;width:fit-content" Click="@(args => NavigationManager.NavigateTo("Tenant/Create"))" />
 </div>
 
-<table id="rentalPropertiesTable" class="table table-striped table-bordered">
-    <thead>
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.TenantId)</th>
-            <th>@Html.DisplayNameFor(model => model.Idno)</th>
-            <th>@Html.DisplayNameFor(model => model.Name)</th>
-            <th>@Html.DisplayNameFor(model => model.GenderName)</th>
-            <th>@Html.DisplayNameFor(model => model.PhoneNo)</th>
-          
-            <th>Actions</th>
-        </tr>
-
-    </thead>
-    <tbody>
-        @if (Model.Any())
-        {
-            foreach (var item in Model)
-            {
-                <tr data-id="@item.TenantId">
-                    <td>@Html.DisplayFor(modelItem => item.TenantId)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Idno)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                    <td>@Html.DisplayFor(modelItem => item.GenderName)</td>
-                    <td>@Html.DisplayFor(modelItem => item.PhoneNo)</td>
-                    
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.TenantId" class="btn btn-warning btn-sm">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                        <a asp-action="Details" asp-route-id="@item.TenantId" class="btn btn-info btn-sm">
-                            <i class="fas fa-info-circle"></i>
-                        </a>
-                        <a asp-action="Delete" asp-route-id="@item.TenantId" class="btn btn-danger btn-sm">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
-                    </td>
-                </tr>
-            }
-        }
-        else
-        {
-            <tr>
-                <td colspan="18" class="text-center">No data to display</td>
-            </tr>
-        }
-    </tbody>
-</table>
-
+<RadzenGrid Data="@Model" TItem="RentalManagementSystem.ViewModels.TenantViewModel" ColumnWidth="200px" AllowFiltering="true" AllowPaging="true" PageSize="10" AllowSorting="true">
+    <Columns>
+        <RadzenGridColumn TItem="RentalManagementSystem.ViewModels.TenantViewModel" Property="TenantId" Title="Tenant Id" />
+        <RadzenGridColumn TItem="RentalManagementSystem.ViewModels.TenantViewModel" Property="Idno" Title="Id Number" />
+        <RadzenGridColumn TItem="RentalManagementSystem.ViewModels.TenantViewModel" Property="Name" Title="Name" />
+        <RadzenGridColumn TItem="RentalManagementSystem.ViewModels.TenantViewModel" Property="GenderName" Title="Gender" />
+        <RadzenGridColumn TItem="RentalManagementSystem.ViewModels.TenantViewModel" Property="PhoneNo" Title="Phone Number" />
+        <RadzenGridColumn TItem="RentalManagementSystem.ViewModels.TenantViewModel" Title="Actions">
+            <Template Context="tenant">
+                <RadzenButton Text="Edit" Icon="edit" Style="margin-right: 10px;" Click="@(args => NavigationManager.NavigateTo($"Tenant/Edit/{tenant.TenantId}"))" />
+                <RadzenButton Text="Details" Icon="info" Style="margin-right: 10px;" Click="@(args => NavigationManager.NavigateTo($"Tenant/Details/{tenant.TenantId}"))" />
+                <RadzenButton Text="Delete" Icon="delete" Click="@(args => NavigationManager.NavigateTo($"Tenant/Delete/{tenant.TenantId}"))" />
+            </Template>
+        </RadzenGridColumn>
+    </Columns>
+</RadzenGrid>
 
 @section Scripts {
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
@@ -93,8 +57,6 @@
                     });
                 }
             });
-
-
         });
     </script>
 }

@@ -1,4 +1,4 @@
-﻿@model RentalManagementSystem.Models.Rooms.Rooms
+@model RentalManagementSystem.Models.Rooms.Rooms
 
 @{
     ViewData["Title"] = "Create";
@@ -9,59 +9,31 @@
 <h4>Rooms</h4>
 <hr />
 <div class="row">
-    
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="row">
-        <div class="col-md-4">
-
-                <div class="form-group">
-                    <label asp-for="RentalId" class="control-label font-weight-bold"></label>
-                    <select id="rental-select" asp-for="RentalId" asp-items="Model.GetProperty" class="form-control">
-                    </select>
-                    <span asp-validation-for="RentalId" class="text-danger"></span>
-                </div>
-            <div class="form-group">
-                <label asp-for="FloorNo" class="control-label"></label>
-                    <input asp-for="FloorNo" class="form-control" />
-                    <span asp-validation-for="FloorNo" class="text-danger"></span>
+            <div class="col-md-4">
+                <RadzenDropDown @bind-Value="Model.RentalId" Data="Model.GetProperty" TextProperty="Text" ValueProperty="Value" Name="RentalId" />
+                <span asp-validation-for="RentalId" class="text-danger"></span>
+                <RadzenTextBox @bind-Value="Model.FloorNo" Name="FloorNo" />
+                <span asp-validation-for="FloorNo" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <RadzenTextBox @bind-Value="Model.RoomType" Name="RoomType" />
+                <span asp-validation-for="RoomType" class="text-danger"></span>
+                <RadzenTextBox @bind-Value="Model.RoomNo" Name="RoomNo" />
+                <span asp-validation-for="RoomNo" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <RadzenNumeric @bind-Value="Model.RentCost" Name="RentCost" />
+                <span asp-validation-for="RentCost" class="text-danger"></span>
+                <RadzenNumeric @bind-Value="Model.Deposit" Name="Deposit" />
+                <span asp-validation-for="Deposit" class="text-danger"></span>
+                <RadzenButton Text="Create" ButtonStyle="ButtonStyle.Primary" Icon="add_circle" style="float:right" />
             </div>
         </div>
-        <div class="col-md-4">
-                <div class="form-group">
-                    <label asp-for="RoomType" class="control-label"></label>
-                    <input asp-for="RoomType" class="form-control" />
-                    <span asp-validation-for="RoomType" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="RoomNo" class="control-label"></label>
-                    <input asp-for="RoomNo" class="form-control" />
-                    <span asp-validation-for="RoomNo" class="text-danger"></span>
-                </div>
-           
-        </div>
-        <div class="col-md-4">
-                <div class="form-group">
-                    <label asp-for="RentCost" class="control-label"></label>
-                    <input asp-for="RentCost" class="form-control" />
-                    <span asp-validation-for="RentCost" class="text-danger"></span>
-                </div>
-
-                <div class="form-group">
-                    <label asp-for="Deposit" class="control-label"></label>
-                    <input asp-for="Deposit" class="form-control" />
-                    <span asp-validation-for="Deposit" class="text-danger"></span>
-                </div>
-            
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" style="float:right" />
-            </div>
-        </div>
-        </div>
-        </form>
-    </div>
-
+    </form>
+</div>
 
 <div>
     <a asp-action="Index">Back to List</a>
