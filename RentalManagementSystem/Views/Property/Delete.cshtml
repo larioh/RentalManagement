@@ -1,4 +1,4 @@
-﻿@model RentalManagementSystem.Models.RentalsProperties.RentalProperties
+@model RentalManagementSystem.Models.RentalsProperties.RentalProperties
 
 @{
     ViewData["Title"] = "Delete";
@@ -8,60 +8,34 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <form asp-action="DeleteRental" method="post">
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PropertyId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PropertyId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.FloorLevels)
-        </dt>
-        <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.FloorLevels)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Location)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-     
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.CreateDate)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CreateDate)
-        </dd>
-    </dl>
-    
-    
-        <input type="submit" value="Delete" class="btn btn-danger" />
-        <!-- Hidden fields to bind the model data -->
-        <input type="hidden" asp-for="PropertyId" />
-        <input type="hidden" asp-for="Name" />
-        <input type="hidden" asp-for="FloorLevels" />
-        <input type="hidden" asp-for="Location" />
-        <input type="hidden" asp-for="Description" />
-        <input type="hidden" asp-for="CreateDate" />
-        
-    </form>
-    <div>
-        <a asp-action="ViewRentals">Back to List</a>
-    </div>
+    <RadzenTemplateForm Data="@Model" TItem="RentalManagementSystem.Models.RentalsProperties.RentalProperties" Submit="@OnSubmit">
+        <RadzenFieldset>
+            <RadzenFieldset Legend="Property Details">
+                <RadzenTextBox @bind-Value="Model.Name" Name="Name" Placeholder="Name" Style="width: 100%;" Disabled="true" />
+                <RadzenTextBox @bind-Value="Model.Location" Name="Location" Placeholder="Location" Style="width: 100%;" Disabled="true" />
+                <RadzenTextBox @bind-Value="Model.Description" Name="Description" Placeholder="Description" Style="width: 100%;" Disabled="true" />
+                <RadzenNumeric @bind-Value="Model.FloorLevels" Name="FloorLevels" Placeholder="Floor Levels" Style="width: 100%;" Disabled="true" />
+                <RadzenTextBox @bind-Value="Model.CreateDate" Name="CreateDate" Placeholder="Create Date" Style="width: 100%;" Disabled="true" />
+            </RadzenFieldset>
+            <RadzenButton Text="Delete" ButtonType="Submit" Style="margin-top: 20px;" />
+        </RadzenFieldset>
+    </RadzenTemplateForm>
 </div>
+
+<div>
+    <RadzenButton Text="Back to List" Click="@(() => NavigationManager.NavigateTo("ViewRentals"))" />
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@code {
+    [Inject]
+    protected NavigationManager NavigationManager { get; set; }
+
+    private void OnSubmit()
+    {
+        // Implement form submission logic here
+    }
+}

@@ -14,47 +14,47 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="RoomId" class="control-label"></label>
-                <input asp-for="RoomId" class="form-control" />
+                <RadzenTextBox @bind-Value="Model.RoomId" Name="RoomId" />
                 <span asp-validation-for="RoomId" class="text-danger"></span>
             </div>
           
             <div class="form-group">
                 <label asp-for="FloorNo" class="control-label"></label>
-                <input asp-for="FloorNo" class="form-control" />
+                <RadzenTextBox @bind-Value="Model.FloorNo" Name="FloorNo" />
                 <span asp-validation-for="FloorNo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="RoomNo" class="control-label"></label>
-                <input asp-for="RoomNo" class="form-control" />
+                <RadzenTextBox @bind-Value="Model.RoomNo" Name="RoomNo" />
                 <span asp-validation-for="RoomNo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="RentCost" class="control-label"></label>
-                <input asp-for="RentCost" class="form-control" />
+                <RadzenNumeric @bind-Value="Model.RentCost" Name="RentCost" />
                 <span asp-validation-for="RentCost" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Deposit" class="control-label"></label>
-                <input asp-for="Deposit" class="form-control" />
+                <RadzenNumeric @bind-Value="Model.Deposit" Name="Deposit" />
                 <span asp-validation-for="Deposit" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="RoomType" class="control-label"></label>
-                <input asp-for="RoomType" class="form-control" />
+                <RadzenTextBox @bind-Value="Model.RoomType" Name="RoomType" />
                 <span asp-validation-for="RoomType" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Status" /> @Html.DisplayNameFor(model => model.Status)
+                    <RadzenCheckBox @bind-Value="Model.Status" Name="Status" /> @Html.DisplayNameFor(model => model.Status)
                 </label>
             </div>
             <div class="form-group">
                 <label asp-for="CreateDate" class="control-label"></label>
-                <input asp-for="CreateDate" class="form-control" />
+                <RadzenDatePicker @bind-Value="Model.CreateDate" Name="CreateDate" />
                 <span asp-validation-for="CreateDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <RadzenButton Text="Save" ButtonStyle="ButtonStyle.Primary" Icon="save" style="float:right" />
             </div>
         </form>
     </div>

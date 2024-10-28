@@ -1,4 +1,4 @@
-﻿@model RentalManagementSystem.Models.RoomCapacity.RoomType
+@model RentalManagementSystem.Models.RoomCapacity.RoomType
 
 @{
     ViewData["Title"] = "RoomType";
@@ -10,29 +10,32 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="RoomCapacity">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="CapacityId" class="control-label"></label>
-                <input asp-for="CapacityId" class="form-control" />
-                <span asp-validation-for="CapacityId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        <RadzenTemplateForm Data="@Model" TItem="RentalManagementSystem.Models.RoomCapacity.RoomType" Submit="@OnSubmit">
+            <RadzenFieldset>
+                <RadzenFieldset Legend="Room Capacity Details">
+                    <RadzenTextBox @bind-Value="Model.CapacityId" Name="CapacityId" Placeholder="Capacity ID" Style="width: 100%;" />
+                    <RadzenTextBox @bind-Value="Model.Description" Name="Description" Placeholder="Description" Style="width: 100%;" />
+                </RadzenFieldset>
+                <RadzenButton Text="Create" ButtonType="Submit" Style="margin-top: 20px;" />
+            </RadzenFieldset>
+        </RadzenTemplateForm>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <RadzenButton Text="Back to List" Click="@(() => NavigationManager.NavigateTo("Index"))" />
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+@code {
+    [Inject]
+    protected NavigationManager NavigationManager { get; set; }
+
+    private void OnSubmit()
+    {
+        // Implement form submission logic here
+    }
 }
